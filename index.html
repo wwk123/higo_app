@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="higo">
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/ionic.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/ionic.bundle.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<!--头部-->
+<ion-header-bar  class="bar-light row">
+    <h4 class="col col-20 text-center">
+        <a href="#" class="logo">A-z</a>
+    </h4>
+    <input type="text" placeholder="Search" class="col  col-60 text-center" style="height: 30px;border: 1px solid #9e9e9e;">
+    <h4 class="icon ion-ios-cart col col-20 text-center"></h4>
+</ion-header-bar>
+<!--副标题-->
+
+<ion-content class="has-header has-footer">
+
+    <ui-view></ui-view>
+
+</ion-content>
+
+<!--尾部-->
+<div class="tabs tabs-icon-top tabs-color-assertive" ng-controller="footerCtrl">
+    <a class="tab-item" ng-repeat="dish in footers">
+        <i class="icon" ng-class="dish.className"></i>
+        {{dish.title}}
+    </a>
+    <!--<a class="tab-item">-->
+        <!--<i class="icon ion-bag"></i>-->
+        <!--新品-->
+    <!--</a>-->
+    <!--<a class="tab-item">-->
+        <!--<i class="icon ion-social-nodejs"></i>-->
+        <!--时尚圈-->
+    <!--</a>-->
+    <!--<a class="tab-item">-->
+        <!--<i class="icon ion-earth"></i>-->
+        <!--消息-->
+    <!--</a>-->
+    <!--<a class="tab-item">-->
+        <!--<i class="icon ion-person"></i>-->
+        <!--我的-->
+    <!--</a>-->
+</div>
+<script>
+
+</script>
+<script src="js/route.js"></script>
+<script src="js/main_controller.js"></script>
+</body>
+</html>

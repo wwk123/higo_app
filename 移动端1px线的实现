@@ -1,0 +1,60 @@
+参考地址:  https://segmentfault.com/a/1190000009153217
+
+起因
+现在移动端大部分设备都配备了retina屏幕，在做移动端适配时通常会将viewport设置为device-width值，这样一来1px就等于1物理像素*屏幕缩放值，iPhone6s上1px就等于2个物理像素。那么如何在移动端展示时分割线的高度小于1px呢？
+
+常用方案
+通常的做法如下：
+
+<div class="box">
+    <hr class="line_bottom" >
+</div>
+.box {
+    position: relative;
+}
+.line_bottom{
+    height: 1px;
+    width:100%;
+    background-color: #b7daf0;
+    position:absolute;
+    transform: scaleY(0.3);
+    -webkit-transform: scaleY(0.3);
+}
+兼容问题
+定义完这个样式，在手机上看看，幸运的你可能会看到想要的效果已经展示了，然而这个存在兼容性问题，有的手机上线条没有展示，有的手机上会出现滑动屏幕时线条时有时无。此时还需要在父元素加上以下属性：
+
+transform：perspective（500）
+
+
+
+
+
+
+关于移动端 1px 像素问题
+
+移动端1px变粗的原因
+移动端html的header总会有一句
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+这句话定义了本页面的viewport的宽度为设备宽度,初始缩放值和最大缩放值都为1,并禁止了用户缩放. viewport通俗的讲是浏览器上可用来显示页面的区域, 这个区域是可能比屏幕大的，viewport的设置和屏幕物理分辨率是按比例而不是相同的. 移动端window对象有个devicePixelRatio属性, 它表示设备物理像素和css像素的比例, 在retina屏的iphone手机上, 这个值为2或3, css里写的1px长度映射到物理像素上就有2px或3px那么长
+
+解决方案
+1、IOS8下已经支持带小数的px值, media query对应devicePixelRatio有个查询值-webkit-min-device-pixel-ratio, css可以写成这样
+
+.border { border: 1px solid #999 }
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .border { border: 0.5px solid #999 }
+}
+@media screen and (-webkit-min-device-pixel-ratio: 3) {
+    .border { border: 0.333333px solid #999 }
+}
+2、:after伪类方法
+
+.border{position:relative;}
+.border:after{position: absolute;display: block;left: 0;bottom: 0;width: 100%;border-top: 1px solid rgba(7,17,27,0.1);content: ' ';}
+
+
+
+
+
+
+

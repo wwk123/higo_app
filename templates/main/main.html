@@ -1,0 +1,22 @@
+<!--<div ng-include="'template/include/header.html'"></div>-->
+<!---->
+<h1>这是首页</h1>
+<ion-view view-title="滑动tab">
+    <ion-content has-bouncing="false">
+        <div style="display:flex;width:100%;">
+            <div style="flex:1;text-align: center;" class="tab_default" ng-repeat="d in tabNames" ng-click="activeSlide($index)" ng-class="slectIndex==$index ? 'tab_select' : '' ">
+                {{d}}
+            </div>
+        </div>
+        <ion-slide-box on-slide-changed="slideChanged(index)" active-slide="slideIndex" does-continue="false" show-pager="false">
+            <ion-slide ng-repeat="p in pages">
+                <div ng-include="p"></div>
+            </ion-slide>
+        </ion-slide-box>
+        <div class="box">
+            <hr class="line_bottom" >
+        </div>
+    </ion-content>
+</ion-view>
+
+<!--<div ng-include="'template/include/footer.html'"></div>-->
