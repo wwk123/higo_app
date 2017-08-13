@@ -30,6 +30,35 @@ SPA应用：采用ionic实现SPA应用(路由，MVC, $http)
         配置路由词典
         验证路由词典:
 
+构建路由的问题:    on-touch="jump({{dish.desPath}})",
+无法获取对象的属性
+通过 on-touch = "jump(dish.desPath)"
 
 
+ng-class的用法
 
+1   字符串数组形式是针对class简单变化，具有排斥性的变化，true是什么class，false是什么class，其形如;
+
+function Ctr($scope) {
+    $scope.isActive = true;
+}
+
+<div ng-class="{true: 'active', false: 'inactive'}[isActive]">
+</div>
+复制代码
+其结果是2中组合，isActive表达式为true，则 active，负责inactive。
+
+2  对象key/value处理主要针对复杂的class混合，其形如：
+
+
+function Ctr($scope) {
+
+}
+
+<div ng-class {'selected': isSelected, 'car': isCar}">
+</div>
+复制代码
+
+
+当 isSelected = true 则增加selected class，
+当isCar=true,则增加car class，

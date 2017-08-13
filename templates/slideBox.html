@@ -1,0 +1,12 @@
+<!--轮播图-->
+<div ng-controller="slideBoxCtrl" class="box">
+    <ion-slide-box auto-play="true"  does-continue="true" slide-interval='3000' active-slide="myActiveSlide">
+        <ion-slide on-slide-changed="slideHasChanged(index)" ng-repeat="item in slideList" class="text-center">
+            <img src="img/{{item.img}}" alt="">
+            <h3>{{item.title01}}</h3>
+            <h4>{{item.title02}}</h4>
+        </ion-slide>
+    </ion-slide-box>
+</div>
+
+<!-- view-title -->

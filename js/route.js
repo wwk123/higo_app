@@ -39,15 +39,35 @@ app.config(function($stateProvider, $urlRouterProvider){
             // })
         .state('product',{
             url : '/product',
-            templateUrl : 'templates/product.html'
+            templateUrl : 'templates/product/product.html'
         })
+            .state('woman', {
+                url: '/woman',
+                templateUrl : 'templates/product/templates/woman.html',
+                parent : 'product'
+            })
+            .state('man', {
+                url : '/man',
+                templateUrl : 'templates/product/templates/man.html',
+                parent : 'product'
+            })
+            .state('beauty', {
+                url : '/beauty',
+                templateUrl : 'templates/product/templates/beauty.html',
+                parent : 'product'
+            })
+            .state('design', {
+                url : '/design',
+                templateUrl : 'templates/product/templates/design.html',
+                parent : 'product'
+            })
         .state('mode',{
             url : '/mode',
             templateUrl : 'templates/mode.html'
         })
         .state('news',{
             url : '/news',
-            templateUrl : 'templates/product.html'
+            templateUrl : 'templates/news.html'
         })
         .state('person',{
             url : '/person',
@@ -71,41 +91,53 @@ app.controller('footerCtrl', ['$scope', '$state', function($scope, $state) {
             {
                 index: 0,
                 className: 'ion-home',
-                title: '首页'
+                title: '首页',
+                desPath: 'main'
             },
             {
                 index: 1,
                 className: 'ion-bag',
-                title: '新品'
+                title: '新品',
+                desPath: 'product'
             },
             {
                 index: 2,
                 className: 'ion-social-nodejs',
-                title: '时尚圈'
+                title: '时尚圈',
+                desPath: 'mode'
             },
             {
                 index: 3,
                 className: 'ion-earth',
-                title: '消息'
+                title: '消息',
+                desPath: 'news'
             },
             {
                 index: 4,
                 className: 'ion-person',
-                title: '我的'
+                title: '我的',
+                desPath: 'person'
             }
-        ]
+        ];
+        $scope.jump = function (desPath) {
+            console.log(desPath);
+            $state.go(desPath);
+        }
     }
 ]);
 
-// man页面控制
-app.controller('manCtrl', ['$scope', '$state', function($scope, $state) {
-
-    }
-]);
+// // 轮播图 控制
+// app.controller('slideCtrl', ['$scope', '$state','$ionicGesture', function($scope, $state,$ionicGesture) {
+//         $scope.jump = function () {
+//             $state.go('index');
+//         }
+//     }
+// ]);
 
 //  beauty页面控制
 app.controller('beautyCtrl', ['$scope', '$state', function($scope, $state) {
-
+    $scope.productNames = ['女士','男士','美妆','DESIGN'];
+    $scope.modeNames = ['全辑','热点','明星','街拍'];
     }
 ]);
 
